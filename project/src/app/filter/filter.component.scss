@@ -1,0 +1,37 @@
+div {
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+  padding: 20px;
+  border-radius: 20px;
+
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+
+  h1 {
+    color: white;
+    padding: 12px;
+  }
+
+  form {
+    .inputs {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      @media only screen and (max-width: 800px) {
+        flex-direction: column;
+      }
+    }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+    }
+  }
+}
+
