@@ -24,4 +24,17 @@ export class RailwayService {
   getDepartures() : Observable<departureModel[]>{
     return this.get("departures")
   }
+
+  // getFilteredDepartures(date : any, source : any, destination : any) : Observable<departureModel[]>{
+  //   return this.get(`departure/${source}/${destination}/${date}`)
+  // }
+  getFilteredDepartures(date: any, source: any, destination: any): Observable<departureModel[]> {
+    // URL encode source, destination, and date as per the API format
+    const encodedSource = encodeURIComponent(source);
+    const encodedDestination = encodeURIComponent(destination);
+    const encodedDate = encodeURIComponent(date);
+
+    // return this.get(`getdeparture?from=${encodedSource}&to=${encodedSource}&date=${encodedDate}`);
+    return this.get(`getdeparture?from=${encodedSource}&to=${encodedDestination}&date=${encodedDate}`);
+  }
 }
