@@ -6,13 +6,19 @@ export const routes: Routes = [
 
   {
     path: "home",
-    title: "railway tickets",
+    title: "railway departures",
     loadComponent: () => import("./home/home.component").then(m => m.HomeComponent)
   },
 
   {
     path: "home/:date/:source/:destination",
-    title: "railway tickets - filter",
+    title: "railway departures",
     loadComponent: () => import("./home/home.component").then(m => m.HomeComponent)
-  }
+  },
+
+  {
+    path: "trains/:date/:source/:destination",
+    title: "railway trains",
+    loadComponent: () => import("./trains/trains.component").then(m => m.TrainsComponent)
+  },
 ];
