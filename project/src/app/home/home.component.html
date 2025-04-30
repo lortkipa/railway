@@ -1,3 +1,32 @@
-<app-filter></app-filter>
+<section class="filter">
+  <input type="date" class="form-control"
+                     [(ngModel)]="filter_date">
+  <select class="form-select"
+          [(ngModel)]="filter_source">
+    <option selected>საიდან</option>
+    <option *ngFor="let station of stations">{{station.name}}</option>
+  </select>
+  <select class="form-select"
+          [(ngModel)]="filter_destination"
+          >
+          <option selected>სად</option>
+          <option *ngFor="let station of stations">{{station.name}}</option>
+  </select>
+  <button class="btn btn-primary"
+          routerLink="/tickets/{{filter_source}}/{{filter_destination}}/{{filter_date}}"
+          >მოძებნა</button>
+</section>
 
-<app-departures></app-departures>
+<section class="trains">
+<div class="card" style="width: 18rem;"
+  *ngFor="let train of trains">
+  <div class="card-body">
+    <h5 class="card-title">{{train.from}} - {{train.to}}</h5>
+    <h5 class="card-title">{{train.departure}} - {{train.arrive}}</h5>
+    <a
+        class="btn btn-primary"
+        routerLink="/tickets/{{train.from}}/{{train.to}}/{{train.date}}"
+        >გადასვლა</a>
+  </div>
+</div>
+</section>

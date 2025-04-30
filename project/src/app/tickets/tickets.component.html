@@ -1,0 +1,56 @@
+<section
+    *ngFor="let departure of departures"
+    class="card generalInfo"
+    style="width: 18rem;"
+    >
+    <div
+        class="card-body"
+        >
+        <h5 class="card-title fw-bold fs-5">ზოგადი ინფორმაცია</h5>
+        <h5 class="card-title">გასვლა: {{departure.source}}</h5>
+        <h5 class="card-title">ჩასვლა: {{departure.destination}}</h5>
+        <h5 class="card-title">დღე: {{departure.date}}</h5>
+    </div>
+</section>
+
+<section
+    *ngFor="let departure of departures"
+    class="trains"
+    >
+    <button
+        *ngFor="let train of departure.trains; let index = index"
+        [ngClass]="trainIndex == index ? 'btn btn-primary' : 'btn btn-info'"
+        (click)="saveTrainIndex(index)"
+        >{{train.departure}}-{{train.arrive}}</button>
+</section>
+
+<section
+    *ngFor="let departure of departures"
+    class="classes"
+    >
+    <button
+        *ngFor="let vagon of departure.trains[trainIndex].vagons; let index = index"
+        [ngClass]="vagonIndex == index ? 'btn btn-primary' : 'btn btn-info'"
+        (click)="saveVagonIndex(index)"
+        >{{vagon.name}} - {{vagon.seats[0].price}}&#8382;</button>
+</section>
+
+
+  <section
+      class="seatsWrapper"
+      >
+      <div
+          *ngFor="let departure of departures"
+          class="seats"
+          >
+          <div
+              *ngFor="let seat of departure.trains[trainIndex].vagons[vagonIndex].seats; let index = index"
+              >
+              <button
+                  type="checkbox"
+                  class="btn btn-info"
+                  (click)="saveTicket(seat.number)"
+                  >{{seat.number}}</button>
+          </div>
+      </div>
+  </section>

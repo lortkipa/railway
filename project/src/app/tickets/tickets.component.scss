@@ -1,0 +1,45 @@
+section {
+  margin-top: 40px;
+}
+
+.generalInfo {
+  margin: auto;
+
+  h5:first-child {
+    text-align: center;
+  }
+}
+
+.trains {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.classes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.seatsWrapper {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .seats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    max-width: 1200px;
+    width: 100%;
+  }
+}
