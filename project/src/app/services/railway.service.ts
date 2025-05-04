@@ -23,10 +23,8 @@ export class RailwayService {
   }
 
   get_filteredDepartures(from : string, to : string, date : string) : Observable<departure[]> {
-
     const queryString = `from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}`
 
     return this.api.get(`${this.endpoint}/getdeparture?${queryString}`)
-
   }
 }

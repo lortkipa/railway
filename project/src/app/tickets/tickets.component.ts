@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {LocalStorageService} from '../services/local-storage.service';
 import {ticket} from '../models/ticket';
 import {NavigationBtnComponent} from '../navigation-btn/navigation-btn.component';
+import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-tickets',
@@ -16,7 +17,7 @@ import {NavigationBtnComponent} from '../navigation-btn/navigation-btn.component
 })
 export class TicketsComponent {
 
-  constructor(private railway : RailwayService, private route : ActivatedRoute, private localStorage : LocalStorageService) {}
+  constructor(private railway : RailwayService, private route : ActivatedRoute, private localStorage : LocalStorageService, private alert : AlertService) {}
 
   departures : departure[] = []
 
@@ -91,6 +92,9 @@ export class TicketsComponent {
   }
 
   deleteTickets() {
+    // show alert
+    this.alert.success("ყველა ბილეთი კალათიდან წაშლილია", true)
+
     // clear ticket array
     this.tickets = []
 
@@ -99,5 +103,7 @@ export class TicketsComponent {
   }
 
   buyTickets() {
+    // show alert
+    this.alert.success("ბილეთი ნახიყიდა", true)
   }
 }
