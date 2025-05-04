@@ -1,3 +1,5 @@
+<app-navigation-btn></app-navigation-btn>
+
 <section
     *ngFor="let departure of departures"
     class="card generalInfo"
@@ -25,32 +27,43 @@
 </section>
 
 <section
-    *ngFor="let departure of departures"
-    class="classes"
-    >
-    <button
-        *ngFor="let vagon of departure.trains[trainIndex].vagons; let index = index"
-        [ngClass]="vagonIndex == index ? 'btn btn-primary' : 'btn btn-info'"
-        (click)="saveVagonIndex(index)"
-        >{{vagon.name}} - {{vagon.seats[0].price}}&#8382;</button>
+  *ngFor="let departure of departures"
+  class="classes"
+  >
+  <button
+      *ngFor="let vagon of departure.trains[trainIndex].vagons; let index = index"
+      [ngClass]="vagonIndex == index ? 'btn btn-primary' : 'btn btn-info'"
+      (click)="saveVagonIndex(index)"
+      >{{vagon.name}} - {{vagon.seats[0].price}}&#8382;</button>
 </section>
 
 
-  <section
-      class="seatsWrapper"
-      >
-      <div
-          *ngFor="let departure of departures"
-          class="seats"
-          >
-          <div
-              *ngFor="let seat of departure.trains[trainIndex].vagons[vagonIndex].seats; let index = index"
-              >
-              <button
-                  type="checkbox"
-                  (click)="saveTicket(seat.number)"
-                  [class]="isSeatInCart(seat.number) ? 'btn btn-primary' : 'btn btn-info'"
-                  >{{seat.number}}</button>
-          </div>
-      </div>
-  </section>
+<section
+    class="seatsWrapper"
+    >
+    <div
+        *ngFor="let departure of departures"
+        class="seats"
+        >
+        <div
+            *ngFor="let seat of departure.trains[trainIndex].vagons[vagonIndex].seats; let index = index"
+            >
+            <button
+                type="checkbox"
+                (click)="saveTicket(seat.number)"
+                [class]="isSeatInCart(seat.number) ? 'btn btn-primary' : 'btn btn-info'"
+                >{{seat.number}}</button>
+        </div>
+    </div>
+</section>
+
+<section class="buttons">
+  <button
+    class="btn btn-danger fs-5"
+    (click)="deleteTickets()"
+  >ყველას წაშლა</button>
+  <button
+    class="btn btn-success fs-5"
+    (click)="buyTickets()"
+  >ყიდვა</button>
+</section>

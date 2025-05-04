@@ -5,11 +5,12 @@ import {departure} from '../models/departure';
 import {CommonModule} from '@angular/common';
 import {LocalStorageService} from '../services/local-storage.service';
 import {ticket} from '../models/ticket';
+import {NavigationBtnComponent} from '../navigation-btn/navigation-btn.component';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavigationBtnComponent],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss'
 })
@@ -33,11 +34,16 @@ export class TicketsComponent {
       this.route.snapshot.params['date']
     ).subscribe(data => this.departures = data)
 
+    // set emty array in local storage if storage does not exist yet
+    if (!this.localStorage.get("tickets")){
+      this.localStorage.set("tickets", JSON.stringify([]))
+    }
+
     // get saved tickets from local storage
     this.tickets = JSON.parse(this.localStorage.get("tickets"))
     for (let i = 0; i < this.tickets.length; i++)
     {
-console.log("ticket: ", this.tickets[i].name)
+      console.log("ticket: ", this.tickets[i].name)
     }
 
   }
@@ -68,9 +74,9 @@ console.log("ticket: ", this.tickets[i].name)
     else {
       this.tickets = this.tickets.filter(
         ticket =>
-        ticket.name != name &&
-          ticket.trainId != this.trainIndex &&
-          ticket.vagonId != this.vagonIndex
+        !(ticket.name == name &&
+          ticket.trainId == this.trainIndex &&
+          ticket.vagonId == this.vagonIndex)
       );
     }
 
@@ -80,6 +86,18 @@ console.log("ticket: ", this.tickets[i].name)
 
   isSeatInCart(name : string) : boolean
   {
+    // return true if same ticket is found in cart, else - return false
     return this.tickets.some(ticket => ticket.name == name && ticket.trainId == this.trainIndex && ticket.vagonId == this.vagonIndex)
+  }
+
+  deleteTickets() {
+    // clear ticket array
+    this.tickets = []
+
+    // clear local storage
+    this.localStorage.set("tickets", JSON.stringify([]))
+  }
+
+  buyTickets() {
   }
 }
