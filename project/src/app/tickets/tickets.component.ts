@@ -33,6 +33,13 @@ export class TicketsComponent {
       this.route.snapshot.params['date']
     ).subscribe(data => this.departures = data)
 
+    // get saved tickets from local storage
+    this.tickets = JSON.parse(this.localStorage.get("tickets"))
+    for (let i = 0; i < this.tickets.length; i++)
+    {
+console.log("ticket: ", this.tickets[i].name)
+    }
+
   }
 
   saveTrainIndex(index : number)
@@ -59,12 +66,16 @@ export class TicketsComponent {
       );
     }
     else {
-       this.tickets = this.tickets.filter(ticket =>
-      ticket.name != name &&
-        ticket.trainId != this.trainIndex &&
-        ticket.vagonId != this.vagonIndex
-    );
+      this.tickets = this.tickets.filter(
+        ticket =>
+        ticket.name != name &&
+          ticket.trainId != this.trainIndex &&
+          ticket.vagonId != this.vagonIndex
+      );
     }
+
+    // save new array in local storage
+    this.localStorage.set("tickets", JSON.stringify(this.tickets))
   }
 
   isSeatInCart(name : string) : boolean
