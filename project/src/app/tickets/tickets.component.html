@@ -48,8 +48,8 @@
               >
               <button
                   type="checkbox"
-                  class="btn btn-info"
                   (click)="saveTicket(seat.number)"
+                  [class]="isSeatInCart(seat.number) ? 'btn btn-primary' : 'btn btn-info'"
                   >{{seat.number}}</button>
           </div>
       </div>

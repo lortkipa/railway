@@ -48,14 +48,27 @@ export class TicketsComponent {
   }
 
   saveTicket(name : string) {
+    // if ticket is not in cart, push it, else - remove it
+    if (!this.isSeatInCart(name)) {
+      this.tickets.push(
+        {
+          name: name,
+          trainId: this.trainIndex,
+          vagonId: this.vagonIndex
+        }
+      );
+    }
+    else {
+       this.tickets = this.tickets.filter(ticket =>
+      ticket.name != name &&
+        ticket.trainId != this.trainIndex &&
+        ticket.vagonId != this.vagonIndex
+    );
+    }
+  }
 
-    this.tickets.push(
-      { trainId: this.departures[0].trains[this.trainIndex].id,
-        vagonId: this.departures[0].trains[this.trainIndex].vagons[this.vagonIndex].id,
-        name: name }
-    )
-
-    console.log(this.tickets)
-
+  isSeatInCart(name : string) : boolean
+  {
+    return this.tickets.some(ticket => ticket.name == name && ticket.trainId == this.trainIndex && ticket.vagonId == this.vagonIndex)
   }
 }
