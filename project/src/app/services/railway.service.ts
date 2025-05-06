@@ -4,6 +4,7 @@ import {station} from '../models/station';
 import {Observable} from 'rxjs';
 import {departure} from '../models/departure';
 import {train} from '../models/train';
+import {buyTicket} from '../models/buyTicket';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,9 @@ export class RailwayService {
 
     return this.api.get(`${this.endpoint}/getdeparture?${queryString}`)
   }
+
+  post_tickets(form: buyTicket): Observable<any> {
+    return this.api.post(`${this.endpoint}/tickets/register`, form);
+  }
+
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RailwayService} from '../services/railway.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {departure} from '../models/departure';
 import {CommonModule} from '@angular/common';
 import {LocalStorageService} from '../services/local-storage.service';
@@ -11,7 +11,7 @@ import {AlertService} from '../services/alert.service';
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule, NavigationBtnComponent],
+  imports: [CommonModule, RouterLink, NavigationBtnComponent],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss'
 })
@@ -21,12 +21,16 @@ export class TicketsComponent {
 
   departures : departure[] = []
 
-  trainIndex : number = -1;
-  vagonIndex : number = -1;
+  trainIndex : number = -1
+  vagonIndex : number = -1
 
   tickets : ticket[] = []
 
+  date ?: string;
+
   ngOnInit() {
+    // get date from param
+    this.date = this.route.snapshot.params['date']
 
     // get departures wich has trains, vagons and seats array
     this.railway.get_filteredDepartures(
@@ -42,10 +46,6 @@ export class TicketsComponent {
 
     // get saved tickets from local storage
     this.tickets = JSON.parse(this.localStorage.get("tickets"))
-    for (let i = 0; i < this.tickets.length; i++)
-    {
-      console.log("ticket: ", this.tickets[i].name)
-    }
 
   }
 
@@ -61,14 +61,15 @@ export class TicketsComponent {
     this.vagonIndex = index;
   }
 
-  saveTicket(name : string) {
+  saveTicket(name : string, seatId : string) {
     // if ticket is not in cart, push it, else - remove it
     if (!this.isSeatInCart(name)) {
       this.tickets.push(
         {
           name: name,
           trainId: this.trainIndex,
-          vagonId: this.vagonIndex
+          vagonId: this.vagonIndex,
+          seatId: seatId
         }
       );
     }

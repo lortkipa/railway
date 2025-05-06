@@ -1,0 +1,29 @@
+<app-navigation-btn></app-navigation-btn>
+
+<form>
+  <div class="mb-3">
+    <label class="form-label">სახელი</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="name"
+    [(ngModel)]="name"
+    >
+  </div>
+  <div class="mb-3">
+    <label class="form-label">გვარი</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="surname"
+    [(ngModel)]="surname"
+    >
+  </div>
+  <div class="mb-3">
+    <label class="form-label">ელფოსტა</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="email"
+    [(ngModel)]="email"
+    >
+  </div>
+    <button type="submit"
+            class="btn btn-success fs-5"
+            (click)="buyTickets()"
+            >ყიდვა</button>
+</form>

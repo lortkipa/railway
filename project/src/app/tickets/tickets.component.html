@@ -49,7 +49,7 @@
             >
             <button
                 type="checkbox"
-                (click)="saveTicket(seat.number)"
+                (click)="saveTicket(seat.number, seat.seatId)"
                 [class]="isSeatInCart(seat.number) ? 'btn btn-primary' : 'btn btn-info'"
                 >{{seat.number}}</button>
         </div>
@@ -64,6 +64,6 @@
   >ყველას წაშლა</button>
   <button
     class="btn btn-success fs-5"
-    (click)="buyTickets()"
+    routerLink="/buy/{{date}}"
   >ყიდვა</button>
 </section>
