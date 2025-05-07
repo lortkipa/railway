@@ -3,12 +3,13 @@
 <section>
   <div
       class="card"
-      style="width: 18rem;"
+      style="width: 20rem;"
       *ngFor="let ticket of filteredTickets; let index = index"
       >
       <div class="card-body"
            >
            <h5 class="card-title">ადგილი: {{ticket.persons[0].seat.number}}</h5>
+           <h5 class="card-text">ბილეთის ფასი: {{ticket.ticketPrice}}&#8382;</h5>
            <h5 class="card-title">თარიღი: {{ticket.date}}</h5>
            <h5 class="card-title">საიდან: {{ticket.train.from}} {{ticket.train.departure}}</h5>
            <h5 class="card-title">სად: {{ticket.train.to}} {{ticket.train.arrive}}</h5>

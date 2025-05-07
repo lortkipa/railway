@@ -45,8 +45,7 @@ export class BuyComponent {
         date: this.date,
         trainId: this.tickets[i].trainId + 1,
         email: this.email,
-        // phoneNumber: this.number,
-        phoneNumber: '577711704',
+        phoneNumber: this.number?.toString(),
         people: [
           {
             name: this.name,
@@ -64,10 +63,12 @@ export class BuyComponent {
         ticketId = ticketId.split(':')[1]
         this.ticketIds.push(ticketId)
         this.localStorage.set("ticketIds", JSON.stringify(this.ticketIds))
+        console.log(data)
       })
     }
     this.alert.success("ბილეთი წარმატებით დაიჯავშნა", true)
     this.localStorage.set("tickets", JSON.stringify([]))
     this.router.navigate(['/home']);
+
   }
 }

@@ -28,7 +28,12 @@ export class TicketsComponent {
 
   date ?: string;
 
+  currentPrice : number = 0;
+
   ngOnInit() {
+    // query the current price
+    this.currentPrice = this.localStorage.get("total") || 0
+
     // get date from param
     this.date = this.route.snapshot.params['date']
 
@@ -61,7 +66,7 @@ export class TicketsComponent {
     this.vagonIndex = index;
   }
 
-  saveTicket(name : string, seatId : string) {
+  saveTicket(name : string, seatId : string, price : number) {
     // if ticket is not in cart, push it, else - remove it
     if (!this.isSeatInCart(name)) {
       this.tickets.push(
@@ -72,6 +77,11 @@ export class TicketsComponent {
           seatId: seatId
         }
       );
+
+      // save total
+      let previousTotal : number = this.localStorage.get("total") || 0
+      this.currentPrice = Number(previousTotal) + Number(price)
+      this.localStorage.set("total", this.currentPrice)
     }
     else {
       this.tickets = this.tickets.filter(
@@ -80,10 +90,16 @@ export class TicketsComponent {
           ticket.trainId == this.trainIndex &&
           ticket.vagonId == this.vagonIndex)
       );
+
+      // save total
+      let previousTotal : number = this.localStorage.get("total")
+      this.currentPrice = Number(previousTotal) - Number(price)
+      this.localStorage.set("total", this.currentPrice)
     }
 
     // save new array in local storage
     this.localStorage.set("tickets", JSON.stringify(this.tickets))
+
   }
 
   isSeatInCart(name : string) : boolean
@@ -93,6 +109,10 @@ export class TicketsComponent {
   }
 
   deleteTickets() {
+    // update prace
+    this.currentPrice = 0;
+    this.localStorage.set("total", 0)
+
     // show alert
     this.alert.success("ყველა ბილეთი კალათიდან წაშლილია", true)
 
@@ -103,8 +123,8 @@ export class TicketsComponent {
     this.localStorage.set("tickets", JSON.stringify([]))
   }
 
-  buyTickets() {
-    // show alert
-    this.alert.success("ბილეთი ნახიყიდა", true)
+  clearPrice() {
+    this.currentPrice = 0;
+    this.localStorage.set("total", 0)
   }
 }
