@@ -1,6 +1,6 @@
 <app-navigation-btn></app-navigation-btn>
 
-<section>
+<section *ngIf="filteredTickets.length > 0">
   <div
       class="card"
       style="width: 20rem;"
@@ -25,4 +25,8 @@
            </div>
       </div>
   </div>
+</section>
+
+<section *ngIf="filteredTickets.length == 0">
+  <h1>ბილეთების შეძენის ისტორია ცარიელია ...</h1>
 </section>
