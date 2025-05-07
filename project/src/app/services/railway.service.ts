@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {departure} from '../models/departure';
 import {train} from '../models/train';
 import {buyTicket} from '../models/buyTicket';
+import {seat} from '../models/seat';
+import {getTicket} from '../models/getTicket';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +31,20 @@ export class RailwayService {
     return this.api.get(`${this.endpoint}/getdeparture?${queryString}`)
   }
 
+  get_tickets() : Observable<getTicket[]> {
+    return this.api.get(`${this.endpoint}/tickets`)
+  }
+
+  get_seat(seatId : string) : Observable<seat> {
+    return this.api.get(`${this.endpoint}/seat/${seatId}`)
+  }
+
   post_tickets(form: buyTicket): Observable<any> {
-    return this.api.post(`${this.endpoint}/tickets/register`, form);
+    return this.api.post(`${this.endpoint}/tickets/register`, form)
+  }
+
+  delete_ticket(vagonId : string): Observable<any> {
+    return this.api.delete(`${this.endpoint}/tickets/cancel/${vagonId}`)
   }
 
 }

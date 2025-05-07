@@ -1,9 +1,11 @@
-export interface buyTicket {
+import {vagon} from "./vagon";
 
+export interface buyTicket {
+  id ?: string;
   trainId: number,
   date: string,
   email ?: string,
-  phoneNumber: string,
+  phoneNumber ?: string,
   people: [
     {
       seatId: string,
@@ -13,6 +15,5 @@ export interface buyTicket {
       status: "",
       payoutCompleted: boolean
     }
-  ]
-
+  ],
 }
