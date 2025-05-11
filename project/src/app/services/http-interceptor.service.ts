@@ -1,26 +1,27 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from 'rxjs';
+import {AlertService} from './alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpInterceptorService implements HttpInterceptor {
 
+  constructor(private alert : AlertService) {}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("request sent")
     return next.handle(req).pipe(
-      catchError((error:HttpResponse<any>) => {
-        if(error.status == 400) {
-          console.log("Bad Requset", error.body)
+      catchError((error: any) => {
+        if (error.status >= 400 && error.status < 500) {
+          this.alert.information("Bad Request Sent", error.error, true)
+        } else {
+          this.alert.information("Some Other Error", error.error, true)
         }
-        else{
-          console.log("Some Other Errors")
-        }
-        return of()
-      } )
-    )
+        return throwError(() => error);
+      })
+    );
   }
-
-
 }
+

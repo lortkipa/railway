@@ -17,3 +17,12 @@ section {
     gap: 20px;
   }
 }
+
+section:last-child {
+  /* Your custom styles for the last section */
+  background-color: #f8f9fa; /* Light background color */
+  padding: 20px; /* Padding around the section */
+  border-top: 2px solid #ddd; /* Add a border on top */
+  text-align: center; /* Center align the content */
+}
+

@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import {LocalStorageService} from '../services/local-storage.service';
 import {RailwayService} from '../services/railway.service';
 import {getTicket} from '../models/getTicket';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {AlertService} from '../services/alert.service';
+import {ReqresService} from '../services/reqres.service';
 
 @Component({
   selector: 'app-history',
@@ -14,13 +15,15 @@ import {AlertService} from '../services/alert.service';
   styleUrl: './history.component.scss'
 })
 export class HistoryComponent {
-  constructor(private alert : AlertService, private localStorage : LocalStorageService, private railway : RailwayService) {}
+  constructor(private alert : AlertService, private localStorage : LocalStorageService, private railway : RailwayService, private route : Router, private reqres : ReqresService) {}
 
   ticketIDs : string[] = []
 
   tickets : getTicket[] = []
 
   filteredTickets : getTicket[] = []
+
+  token ?: string;
 
   ngOnInit() {
     // poll ticket ids
@@ -38,6 +41,9 @@ export class HistoryComponent {
       .filter(ticket => this.ticketIDs.includes(ticket.id));
       console.log("Filtered tickets:", this.filteredTickets);
     })
+
+    // get token
+    this.token = this.localStorage.get('token')
   }
 
   deleteTicket(ticketId: string) {
@@ -56,4 +62,8 @@ export class HistoryComponent {
   });
   }
 
+  deleteAllTickets() {
+    this.railway.delete_allTickets().subscribe(() => this.alert.success("ყველა ბილეთი გაუქმებულია", true))
+    this.route.navigate(['/home'])
+  }
 }

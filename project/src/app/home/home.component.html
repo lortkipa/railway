@@ -1,4 +1,9 @@
 <section class="filter">
+  <h1>
+  მატარებლის ოფიციალური ბილეთი მარტივად
+  </h1>
+
+  <div>
   <input type="date" class="form-control"
                      [(ngModel)]="filter_date">
   <select class="form-select"
@@ -19,18 +24,5 @@
   "
   routerLink="/tickets/{{filter_source}}/{{filter_destination}}/{{filter_date}}"
   >მოძებნა</button>
-  </section>
-
-  <!-- <section class="trains"> -->
-  <!-- <div class="card" style="width: 18rem;" -->
-  <!--   *ngFor="let train of trains"> -->
-  <!--   <div class="card-body"> -->
-  <!--     <h5 class="card-title">{{train.from}} - {{train.to}}</h5> -->
-  <!--     <h5 class="card-title">{{train.departure}} - {{train.arrive}}</h5> -->
-  <!--     <a -->
-  <!--         class="btn btn-primary" -->
-  <!--         routerLink="/tickets/{{train.from}}/{{train.to}}/{{train.date}}" -->
-  <!--         >გადასვლა</a> -->
-  <!--   </div> -->
-  <!-- </div> -->
-  <!-- </section> -->
+  </div>
+</section>

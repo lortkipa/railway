@@ -1,0 +1,21 @@
+<form (ngSubmit)="login()">
+  <div class="mb-3">
+    <label class="form-label">ელფოსტა</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="email"
+    [(ngModel)]="admin.email"
+    >
+  </div>
+  <div class="mb-3">
+    <label class="form-label">პაროლი</label>
+    <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="password"
+    [(ngModel)]="admin.password"
+    >
+  </div>
+
+    <button type="submit"
+            class="btn btn-success fs-5"
+            [disabled]="!(admin.email && admin.password)"
+            >შესვლა</button>
+</form>

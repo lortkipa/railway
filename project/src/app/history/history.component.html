@@ -16,10 +16,6 @@
                 class="btn btn-danger"
                 (click)="deleteTicket(ticket.id)"
                 >წაშლა</a>
-             <a
-                 class="btn btn-success"
-                 routerLink="/ticket info/{{ticketIDs[index]}}"
-                 >ინფორმაციის ნახვა</a>
            </div>
       </div>
   </div>
@@ -27,4 +23,11 @@
 
 <section *ngIf="filteredTickets.length == 0">
   <h1>ბილეთების შეძენის ისტორია ცარიელია ...</h1>
+</section>
+
+<section *ngIf="token">
+  <a
+  class="btn btn-danger"
+  (click)="deleteAllTickets()"
+  >ყველა ბილეთის გაუქმება</a>
 </section>

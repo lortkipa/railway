@@ -35,8 +35,14 @@ export const routes: Routes = [
   },
 
   {
-    title: "ticket information",
-    path: "ticket info/:ticketId",
-    loadComponent: () => import("./ticket-info/ticket-info.component").then(m => m.TicketInfoComponent)
+    title: "admin login",
+    path: "login",
+    loadComponent: () => import("./login/login.component").then(m => m.LoginComponent)
   },
+
+  {
+    path: '**',
+    loadComponent: () => import('./error/error.component').then(m => m.ErrorComponent)
+  },
+
 ];

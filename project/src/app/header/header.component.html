@@ -37,6 +37,14 @@
               routerLinkActive="active"
               >ინფორმაცია</a>
         </li>
+        <li class="nav-item">
+          <a
+              class="nav-link"
+              [class.active]="currentRoute == '/login'"
+              routerLinkActive="active"
+              (click)="navigateLogin()"
+              >{{navLoginText}}</a>
+        </li>
       </ul>
     </div>
 
