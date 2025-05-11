@@ -13,20 +13,24 @@
           <option *ngFor="let station of stations">{{station.name}}</option>
   </select>
   <button class="btn btn-primary"
-          routerLink="/tickets/{{filter_source}}/{{filter_destination}}/{{filter_date}}"
-          >მოძებნა</button>
-</section>
+  [disabled]="
+  !filter_source || !filter_destination || !filter_date ||
+  filter_source == filter_destination
+  "
+  routerLink="/tickets/{{filter_source}}/{{filter_destination}}/{{filter_date}}"
+  >მოძებნა</button>
+  </section>
 
-<section class="trains">
-<div class="card" style="width: 18rem;"
-  *ngFor="let train of trains">
-  <div class="card-body">
-    <h5 class="card-title">{{train.from}} - {{train.to}}</h5>
-    <h5 class="card-title">{{train.departure}} - {{train.arrive}}</h5>
-    <a
-        class="btn btn-primary"
-        routerLink="/tickets/{{train.from}}/{{train.to}}/{{train.date}}"
-        >გადასვლა</a>
-  </div>
-</div>
-</section>
+  <!-- <section class="trains"> -->
+  <!-- <div class="card" style="width: 18rem;" -->
+  <!--   *ngFor="let train of trains"> -->
+  <!--   <div class="card-body"> -->
+  <!--     <h5 class="card-title">{{train.from}} - {{train.to}}</h5> -->
+  <!--     <h5 class="card-title">{{train.departure}} - {{train.arrive}}</h5> -->
+  <!--     <a -->
+  <!--         class="btn btn-primary" -->
+  <!--         routerLink="/tickets/{{train.from}}/{{train.to}}/{{train.date}}" -->
+  <!--         >გადასვლა</a> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <!-- </section> -->

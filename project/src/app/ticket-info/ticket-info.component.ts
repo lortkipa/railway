@@ -3,7 +3,6 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {RailwayService} from '../services/railway.service';
 import {getTicket} from '../models/getTicket';
 import {ActivatedRoute} from '@angular/router';
-import { NavigationBtnComponent } from "../navigation-btn/navigation-btn.component";
 import {CommonModule} from '@angular/common';
 import {AlertService} from '../services/alert.service';
 
@@ -12,7 +11,7 @@ import {AlertService} from '../services/alert.service';
     standalone: true,
     templateUrl: './ticket-info.component.html',
     styleUrl: './ticket-info.component.scss',
-    imports: [NavigationBtnComponent, CommonModule]
+    imports: [CommonModule]
 })
 export class TicketInfoComponent {
 

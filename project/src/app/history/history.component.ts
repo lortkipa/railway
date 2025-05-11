@@ -2,16 +2,14 @@ import {CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
 import {LocalStorageService} from '../services/local-storage.service';
 import {RailwayService} from '../services/railway.service';
-import {buyTicket} from '../models/buyTicket';
 import {getTicket} from '../models/getTicket';
-import {NavigationBtnComponent} from '../navigation-btn/navigation-btn.component';
 import {RouterLink} from '@angular/router';
 import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, NavigationBtnComponent, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
 })

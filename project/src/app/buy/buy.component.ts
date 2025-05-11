@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import { NavigationBtnComponent } from "../navigation-btn/navigation-btn.component";
 import {RailwayService} from '../services/railway.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LocalStorageService} from '../services/local-storage.service';
@@ -11,7 +10,7 @@ import {AlertService} from '../services/alert.service';
 @Component({
   selector: 'app-buy',
   standalone: true,
-  imports: [FormsModule, NavigationBtnComponent],
+  imports: [FormsModule],
   templateUrl: './buy.component.html',
   styleUrl: './buy.component.scss'
 })

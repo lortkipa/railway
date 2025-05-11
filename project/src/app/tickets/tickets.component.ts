@@ -5,13 +5,12 @@ import {departure} from '../models/departure';
 import {CommonModule} from '@angular/common';
 import {LocalStorageService} from '../services/local-storage.service';
 import {ticket} from '../models/ticket';
-import {NavigationBtnComponent} from '../navigation-btn/navigation-btn.component';
 import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavigationBtnComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss'
 })
