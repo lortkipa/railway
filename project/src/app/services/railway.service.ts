@@ -47,4 +47,8 @@ export class RailwayService {
     return this.api.delete(`${this.endpoint}/tickets/cancel/${vagonId}`)
   }
 
+  delete_allTickets() : Observable<any> {
+    return this.api.delete(`${this.endpoint}/tickets/cancelAll`)
+  }
+
 }
