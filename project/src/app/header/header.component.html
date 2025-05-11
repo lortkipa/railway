@@ -41,9 +41,10 @@
           <a
               class="nav-link"
               [class.active]="currentRoute == '/login'"
+              routerLink="/login"
               routerLinkActive="active"
-              (click)="navigateLogin()"
-              >{{navLoginText}}</a>
+              >{{_signal.navLoginText()}}</a>
+              <!-- (click)="navigateLogin()" -->
         </li>
       </ul>
     </div>

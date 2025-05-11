@@ -3,6 +3,7 @@ import {NavigationEnd, Router, RouterLink, RouterModule} from '@angular/router';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AlertService} from '../services/alert.service';
 import {filter} from 'rxjs';
+import {SignalService} from '../services/signal.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent {
 
   app : string = "რკინიგზის ბილეთები"
 
-  constructor(private localStorage : LocalStorageService, private alert : AlertService, private route : Router) {}
+  constructor(private localStorage : LocalStorageService, private alert : AlertService, private route : Router, private signal : SignalService, public _signal : SignalService) {}
 
   token ?: string;
   currentRoute ?: string;
@@ -35,7 +36,9 @@ export class HeaderComponent {
     this.token = this.localStorage.get("token")
 
     // set nav login text
-    this.navLoginText = this.token ? 'გამოსვლა' : 'შესვლა'
+    // this.navLoginText = this.token ? 'გამოსვლა' : 'შესვლა'
+    this.navLoginText = this.signal.navLoginText()
+    console.log("signal", this.signal.navLoginText())
   }
 
   navigateLogin() {
@@ -43,14 +46,14 @@ export class HeaderComponent {
     // get token
     this.token = this.localStorage.get("token")
 
-    if (this.token) {
-      this.localStorage.remove('token')
-      this.alert.success('ადმინი სისტემიდან წარმატებით გამოვიდა', true)
-      this.navLoginText = 'გამოსვლა'
-    } else {
-      this.navLoginText = 'შესვლა'
-      this.route.navigate(["/login"])
-    }
+    // if (this.token) {
+    //   this.localStorage.remove('token')
+    //   this.alert.success('ადმინი სისტემიდან წარმატებით გამოვიდა', true)
+    //   this.navLoginText = 'გამოსვლა'
+    // } else {
+    //   this.navLoginText = 'შესვლა'
+    //   this.route.navigate(["/login"])
+    // }
 
   }
 }

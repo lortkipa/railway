@@ -1,12 +1,16 @@
-<form (ngSubmit)="login()">
-  <div class="mb-3">
+<form>
+  <div class="mb-3"
+        *ngIf="_signal.navLoginText() == 'შესვლა'"
+    >
     <label class="form-label">ელფოსტა</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
     name="email"
     [(ngModel)]="admin.email"
     >
   </div>
-  <div class="mb-3">
+  <div class="mb-3"
+        *ngIf="_signal.navLoginText() == 'შესვლა'"
+    >
     <label class="form-label">პაროლი</label>
     <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
     name="password"
@@ -14,8 +18,18 @@
     >
   </div>
 
-    <button type="submit"
-            class="btn btn-success fs-5"
-            [disabled]="!(admin.email && admin.password)"
-            >შესვლა</button>
+    <button
+        *ngIf="_signal.navLoginText() == 'გამოსვლა'"
+        type="submit"
+        class="btn btn-danger fs-5 logoutBtn"
+        (click)="logout()"
+        >გამოსვლა</button>
+
+    <button
+        *ngIf="_signal.navLoginText() == 'შესვლა'"
+        type="submit"
+        class="btn btn-success fs-5"
+        [disabled]="!(admin.email && admin.password)"
+        (click)="login()"
+        >შესვლა</button>
 </form>
