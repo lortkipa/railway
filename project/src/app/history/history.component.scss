@@ -10,19 +10,15 @@ section {
   flex-wrap: wrap;
   gap: 20px;
 
-  .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+  button {
+    width: 100%;
   }
 }
 
 section:last-child {
-  /* Your custom styles for the last section */
-  background-color: #f8f9fa; /* Light background color */
-  padding: 20px; /* Padding around the section */
-  border-top: 2px solid #ddd; /* Add a border on top */
-  text-align: center; /* Center align the content */
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-top: 2px solid #ddd;
+  text-align: center;
 }
 

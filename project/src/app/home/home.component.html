@@ -20,7 +20,7 @@
   <button class="btn btn-primary"
   [disabled]="
   !filter_source || !filter_destination || !filter_date ||
-  filter_source == filter_destination
+  filter_source == filter_destination || filter_source == 'საიდან' || filter_destination == 'სად'
   "
   routerLink="/tickets/{{filter_source}}/{{filter_destination}}/{{filter_date}}"
   >მოძებნა</button>

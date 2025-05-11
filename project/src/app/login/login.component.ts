@@ -26,6 +26,7 @@ export class LoginComponent {
     this.localStorage.remove("token")
     this.alert.success(`ადმინი წარმატებით გამოვიდა სისტემიდან`, true)
     this.route.navigate(['/home'])
+    this.signal.setText('შესვლა')
 
   }
 
