@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {RailwayService} from '../services/railway.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LocalStorageService} from '../services/local-storage.service';
-import {ticket} from '../models/ticket';
-import {buyTicket} from '../models/buyTicket';
-import {AlertService} from '../services/alert.service';
+import { FormsModule } from '@angular/forms';
+import { RailwayService } from '../services/railway.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from '../services/local-storage.service';
+import { ticket } from '../models/ticket';
+import { buyTicket } from '../models/buyTicket';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-buy',
@@ -15,32 +15,37 @@ import {AlertService} from '../services/alert.service';
   styleUrl: './buy.component.scss'
 })
 export class BuyComponent {
-
-  constructor(private railway : RailwayService, private alert : AlertService, private router : Router, private route : ActivatedRoute, private localStorage : LocalStorageService) {}
+  constructor(private railway: RailwayService, private alert: AlertService, private router: Router, private route: ActivatedRoute, private localStorage: LocalStorageService) {}
 
   // connected to inputs
-  name ?: string;
-  surname ?: string;
-  email ?: string;
-  number ?: string;
-
-  date : string = "";
-
-  tickets : ticket[] = []
-
-  ticketIds : string[] = []
+  name?: string;
+  surname?: string;
+  email?: string;
+  number?: string;
+  date: string = "";
+  tickets: ticket[] = [];
+  ticketIds: string[] = [];
 
   ngOnInit() {
     // get date
-    this.date = this.route.snapshot.params['date']
-
+    this.date = this.route.snapshot.params['date'];
     // get saved tickets from local storage
-    this.tickets = JSON.parse(this.localStorage.get("tickets"))
+    this.tickets = JSON.parse(this.localStorage.get("tickets") || "[]");
+  }
+
+  isValidEmail(): boolean {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return this.email ? emailRegex.test(this.email) : false;
   }
 
   buyTickets() {
+    // Don't proceed if email is invalid
+    if (!this.isValidEmail()) {
+      return;
+    }
+
     for (let i = 0; i < this.tickets.length; i++) {
-      let form : buyTicket = {
+      let form: buyTicket = {
         date: this.date,
         trainId: this.tickets[i].trainId + 1,
         email: this.email,
@@ -56,18 +61,17 @@ export class BuyComponent {
           },
         ]
       };
-      let ticketId : string;
+      let ticketId: string;
       this.railway.post_tickets(form).subscribe(data => {
-        ticketId = data
-        ticketId = ticketId.split(':')[1]
-        this.ticketIds.push(ticketId)
-        this.localStorage.set("ticketIds", JSON.stringify(this.ticketIds))
-        console.log(data)
-      })
+        ticketId = data;
+        ticketId = ticketId.split(':')[1];
+        this.ticketIds.push(ticketId);
+        this.localStorage.set("ticketIds", JSON.stringify(this.ticketIds));
+        console.log(data);
+      });
     }
-    this.alert.success("ბილეთი წარმატებით დაიჯავშნა", true)
-    this.localStorage.set("tickets", JSON.stringify([]))
+    this.alert.success("ბილეთი წარმატებით დაიჯავშნა", true);
+    this.localStorage.set("tickets", JSON.stringify([]));
     this.router.navigate(['/home']);
-
   }
 }

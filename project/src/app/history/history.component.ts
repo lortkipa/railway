@@ -65,5 +65,6 @@ export class HistoryComponent {
   deleteAllTickets() {
     this.railway.delete_allTickets().subscribe(() => this.alert.success("ყველა ბილეთი გაუქმებულია", true))
     this.route.navigate(['/home'])
+    this.localStorage.set("ticketIds", JSON.stringify([]))
   }
 }

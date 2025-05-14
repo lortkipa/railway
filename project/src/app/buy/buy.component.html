@@ -29,6 +29,6 @@
   </div>
     <button type="submit"
             class="btn btn-success fs-5"
-            [disabled]="!(email && number && surname && name)"
+            [disabled]="!(email && number && surname && name && isValidEmail())"
             >ყიდვა</button>
 </form>
