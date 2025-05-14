@@ -1,5 +1,5 @@
 გამოყენებული API-ები:
-  - [Link Text](https://railway.stepprojects.ge/swagger/index.html)
-  - [Link Text](https://reqres.in)
+  - [Step Academy: Train Ticket Booking](https://railway.stepprojects.ge/swagger/index.html)
+  - [Reqres](https://reqres.in)
 
-პროექტის ლინკი: [Link Text](https://effulgent-semifreddo-481d1c.netlify.app/home)
+პროექტის ლინკი: [Website](https://effulgent-semifreddo-481d1c.netlify.app/home)
