@@ -4,7 +4,7 @@
   - Bootstrap
   - Sweet Alert
 
-# User Api's:
+# Used Api's:
   - [Step Academy: Train Ticket Booking](https://railway.stepprojects.ge/swagger/index.html)
   - [Reqres](https://reqres.in)
 
