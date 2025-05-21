@@ -12,7 +12,6 @@ export class ReqresService {
   constructor(private http: HttpClient) {}
 
   post_login(data: admin): Observable<any> {
-    // Add headers (if necessary, like x-api-key)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-api-key': 'reqres-free-v1' 
